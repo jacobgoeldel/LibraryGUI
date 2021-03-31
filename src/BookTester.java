@@ -1,5 +1,15 @@
 import java.util.ArrayList;
+
+import library.Book;
+import library.BookManager;
+import searchAlgorithims.BookSearch;
+import searchAlgorithims.SearchBinaryID;
+import searchAlgorithims.SearchLinearID;
+
 import java.util.LinkedList;
+import java.util.List;
+
+import library.BookManager;
 
 public class BookTester {
 	
@@ -12,9 +22,11 @@ public class BookTester {
 	
 	public static void binarySearchTime() {
 		BookManager bookManager = new BookManager("test.csv", new ArrayList<Book>());
+		BookSearch<Integer> searchAlgorithim = new SearchBinaryID();
+		
 		long startTime = System.nanoTime();
 		
-		bookManager.binarySearchBookId(bookManager.getBooks(), 1500);
+		searchAlgorithim.search(bookManager.getBooks(), 1500);
 		
 		long endTime = System.nanoTime();
 		System.out.println("Time taken for Binary Search: " + ((endTime - startTime) / 1000000.0) + " milliseconds.");
@@ -22,9 +34,10 @@ public class BookTester {
 	
 	public static void linearSearchTime() {
 		BookManager bookManager = new BookManager("test.csv", new LinkedList<Book>());
+		BookSearch<Integer> searchAlgorithim = new SearchLinearID();
 		long startTime = System.nanoTime();
 		
-		bookManager.linearSearchId(bookManager.getBooks(), 1500);
+		searchAlgorithim.search(bookManager.getBooks(), 1500);
 		
 		long endTime = System.nanoTime();
 		System.out.println("Time taken for Linear Search: " + ((endTime - startTime) / 1000000.0) + " milliseconds.");

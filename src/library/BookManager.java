@@ -1,3 +1,4 @@
+package library;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -70,75 +71,9 @@ public class BookManager {
 			e.printStackTrace();  
 		}  
 	}
-	
+
 	public List<Book> getBooks() {
 		return books;
-	}
-	
-	//Binary search for ArrayList
-	public int binarySearchBookId(List<Book> books, int key) {
-		//Setting variable for upperBound to books size - 1
-		int upperBound = books.size() - 1;
-		int lowerBound = 0;
-		int mid = 0;
-		
-		//Loop to search for key
-		while (lowerBound <= upperBound) {
-			if(books.get(mid).getID() < key) {
-				lowerBound = mid + 1;
-			}else if (books.get(mid).getID() == key) {
-				return mid;
-			} else {
-				upperBound = mid - 1;
-			}
-			mid = (lowerBound + upperBound)/2;
-		}
-		
-		return -1;
-	}
-		
-	public int binarySearchIsbn(List<Book> books, String key) {
-		//Setting variable for upperBound to books size - 1
-		int upperBound = books.size() - 1;
-		int lowerBound = 0;
-		int mid = 0;
-		
-		//Loop to search for key
-		while (lowerBound <= upperBound) {
-			if(books.get(mid).getIsbn().compareTo(key) < 0) {
-				lowerBound = mid + 1;
-			}else if (books.get(mid).getIsbn().equals(key)) {
-				return mid;
-			} else {
-				upperBound = mid - 1;
-			}
-			mid = (lowerBound + upperBound)/2;
-		}
-		if(lowerBound > upperBound) {
-			System.out.println("Not Found");
-		}
-		
-		return -1;
-	}
-	
-	public int linearSearchId(List<Book> books, int key) {
-		for (int i = 0; i < books.size(); i++) {
-			if (books.get(i).getID() == key) {
-				return i;
-			}		
-		}
-		
-		return -1;
-	}
-	
-	public int linearSearchIsbn(List<Book> books, String key) {
-		for (int i = 0; i < books.size(); i++) {
-			if (books.get(i).getIsbn().equals(key)) {
-				return i;
-			}		
-		}
-		
-		return -1;
 	}
 	
 	//returns a list of all books  that contain the given key in the title or isbn
